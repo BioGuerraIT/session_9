@@ -1,0 +1,87 @@
+
+{
+    "swagger": "2.0",
+    "basePath": "/",
+    "paths": {
+        "/tasks/": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "Add a new task to a category",
+                "operationId": "add_task",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Task"
+                        }
+                    }
+                ],
+                "tags": [
+                    "tasks"
+                ]
+            },
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "summary": "List all tasks",
+                "operationId": "list_tasks",
+                "tags": [
+                    "tasks"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Kanban API",
+        "version": "1.0",
+        "description": "A simple Kanban API"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "tasks",
+            "description": "Tasks operations"
+        }
+    ],
+    "definitions": {
+        "Task": {
+            "required": [
+                "category",
+                "task"
+            ],
+            "properties": {
+                "task": {
+                    "type": "string",
+                    "description": "The task details"
+                },
+                "category": {
+                    "type": "string",
+                    "description": "The category of the task"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        }
+    }
+}
